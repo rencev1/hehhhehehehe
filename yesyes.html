@@ -1,0 +1,446 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>A Little Letter For You ♡</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #fbc2eb, #a6c1ee, #e6c6ff);
+    overflow-x: hidden;
+}
+
+/* Floating hearts */
+
+.heart {
+    position: fixed;
+    bottom: -30px;
+    color: rgba(255,255,255,0.7);
+    font-size: 22px;
+    animation: floatUp 9s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+    20% { opacity: 1; }
+    100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Main card */
+
+.container, #letterPage {
+    width: 100%;
+    max-width: 520px;
+    padding: 40px 30px;
+    border-radius: 28px;
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 20px 60px rgba(100,50,120,0.18);
+    border: 1px solid rgba(255,255,255,0.8);
+    animation: appear 0.8s ease;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(25px) scale(.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.container {
+    text-align: center;
+}
+
+.icon {
+    font-size: 55px;
+    margin-bottom: 15px;
+    animation: heartbeat 2s infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.12); }
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    color: #744b80;
+    margin-bottom: 12px;
+}
+
+.subtitle {
+    color: #88718f;
+    font-size: 13px;
+    margin-bottom: 25px;
+    line-height: 1.8;
+}
+
+input {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #e6c9e9;
+    border-radius: 15px;
+    background: rgba(255,255,255,0.8);
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    text-align: center;
+    transition: .3s;
+}
+
+input:focus {
+    border-color: #c084d3;
+    box-shadow: 0 0 15px rgba(192,132,211,.25);
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 18px;
+    border: none;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #c084d3, #9074c8);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 7px 20px rgba(144,116,200,.3);
+    transition: .3s;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(144,116,200,.4);
+}
+
+#error {
+    color: #d95378;
+    font-size: 13px;
+    margin-top: 15px;
+    display: none;
+}
+
+/* Letter */
+
+#letterPage {
+    display: none;
+    max-width: 650px;
+    background: rgba(255,255,255,.91);
+}
+
+#letterPage h1 {
+    text-align: center;
+    border-bottom: 1px solid #ead9ed;
+    padding-bottom: 18px;
+    margin-bottom: 25px;
+}
+
+#animatedText {
+    color: #5f5263;
+    font-size: 14px;
+    line-height: 2.2;
+}
+
+.paragraph {
+    margin-bottom: 20px;
+}
+
+.word {
+    opacity: 0;
+    display: inline-block;
+    margin-right: 4px;
+    transition: opacity .5s ease;
+}
+
+.word.show {
+    opacity: 1;
+}
+
+.signature {
+    margin-top: 35px;
+    padding-top: 18px;
+    border-top: 1px solid #ead9ed;
+    text-align: right;
+    color: #a17aab;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 16px;
+}
+
+.music-note {
+    text-align: center;
+    margin-top: 20px;
+    color: #a17aab;
+    font-size: 12px;
+}
+
+@media(max-width: 480px) {
+    .container, #letterPage {
+        padding: 28px 20px;
+        border-radius: 22px;
+    }
+
+    h1 {
+        font-size: 25px;
+    }
+
+    #animatedText {
+        font-size: 13px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Floating hearts -->
+<div id="hearts"></div>
+
+<!-- PASSWORD PAGE -->
+
+<div class="container" id="passwordPage">
+
+    <div class="icon">💌</div>
+
+    <h1>A Little Surprise</h1>
+
+    <p class="subtitle">
+        Someone has prepared something for you.<br>
+        But first, you have to remember one little thing. ♡
+    </p>
+
+    <input
+        type="password"
+        id="password"
+        placeholder="Hint: what word you remember of me"
+        autocomplete="off"
+    >
+
+    <button onclick="unlockLetter()">
+        Open Your Letter ♡
+    </button>
+
+    <div id="error">
+        Invalid password. Try again, okay? 💗
+    </div>
+
+</div>
+
+
+<!-- LETTER PAGE -->
+
+<div id="letterPage">
+
+    <h1>A Letter For You ♡</h1>
+
+    <div id="animatedText"></div>
+
+    <div class="signature">
+        — From Someone Who Named Rence
+    </div>
+
+    <div class="music-note">
+        ♪ A little music for you ♡
+    </div>
+
+    <audio id="bgMusic"
+           src="{{ url_for('static', filename='music.mp3') }}"
+           preload="auto">
+    </audio>
+
+</div>
+
+
+<script>
+
+// Floating hearts
+
+function createHearts() {
+    const container = document.getElementById("hearts");
+
+    for (let i = 0; i < 18; i++) {
+        const heart = document.createElement("div");
+
+        heart.className = "heart";
+        heart.textContent = "♡";
+        heart.style.left = Math.random() * 100 + "%";
+        heart.style.animationDelay = Math.random() * 8 + "s";
+        heart.style.animationDuration = (6 + Math.random() * 6) + "s";
+
+        container.appendChild(heart);
+    }
+}
+
+createHearts();
+
+
+// Password verification using Python
+
+async function unlockLetter() {
+
+    const input = document.getElementById("password").value;
+    const error = document.getElementById("error");
+    const button = document.querySelector("#passwordPage button");
+
+    error.style.display = "none";
+    button.disabled = true;
+    button.textContent = "Opening... ♡";
+
+    try {
+        const response = await fetch("/unlock", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                password: input
+            })
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+
+            document.getElementById("passwordPage").style.display = "none";
+
+            const letter = document.getElementById("letterPage");
+            letter.style.display = "block";
+
+            animateText();
+            playMusic();
+
+        } else {
+
+            error.style.display = "block";
+            button.disabled = false;
+            button.textContent = "Open Your Letter ♡";
+
+        }
+
+    } catch (err) {
+
+        error.textContent = "Something went wrong. Please try again.";
+        error.style.display = "block";
+        button.disabled = false;
+        button.textContent = "Open Your Letter ♡";
+
+    }
+}
+
+
+// Your original letter
+
+function animateText() {
+
+    const paragraphs = [
+        `Ahhh, so in that word… yes, I know, that's why I chose it to be the password, hahaha. Buti na-open mo! Do you hear the music? I really hope it works, kasi ang tagal ko rin nag-ayos nito, potek nayan.`,
+
+        `Anyway, I just want to say something important. Please, have enough sleep po. Don't push yourself too hard and don't stress too much. Life can be heavy sometimes, but your health and peace of mind should always come first. Take care of yourself always, okay?`,
+
+        `I'm happy you opened this letter, because it means you remembered me. That alone makes me smile. So please, keep going, but also give yourself time to rest. You deserve it.`
+    ];
+
+    const container = document.getElementById("animatedText");
+
+    container.innerHTML = "";
+
+    let delay = 0;
+
+    paragraphs.forEach((paragraph) => {
+
+        const p = document.createElement("p");
+        p.className = "paragraph";
+
+        const words = paragraph.split(" ");
+
+        words.forEach((word) => {
+
+            const span = document.createElement("span");
+
+            span.className = "word";
+            span.textContent = word;
+
+            p.appendChild(span);
+
+            setTimeout(() => {
+                span.classList.add("show");
+            }, delay);
+
+            delay += 180;
+
+        });
+
+        container.appendChild(p);
+
+        delay += 500;
+
+    });
+
+}
+
+
+// Background music
+
+function playMusic() {
+
+    const music = document.getElementById("bgMusic");
+
+    music.volume = 0.5;
+
+    music.play().catch(() => {
+        document.querySelector(".music-note").textContent =
+            "♪ Tap to play the music ♡";
+
+        document.querySelector(".music-note").onclick = () => {
+            music.play();
+        };
+    });
+
+}
+
+
+// Press Enter to unlock
+
+document.getElementById("password").addEventListener("keydown", function(event) {
+
+    if (event.key === "Enter") {
+        unlockLetter();
+    }
+
+});
+
+</script>
+
+</body>
+</html>
